@@ -15,14 +15,21 @@
         }
 
         body {
-            background: url('images/anh.jpg') no-repeat center center/cover;           
-            min-height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 0, 0, 0.5) 100%
+            ),
+            url('images/anh.jpg') no-repeat center top/cover,
+            url('images/anh2.jpg') no-repeat center bottom/cover;
+            min-height: 200vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             padding: 20px;
             overflow-x: hidden;
+            background-attachment: fixed;
         }
 
         .container {
@@ -33,7 +40,7 @@
             backdrop-filter: blur(10px);
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             max-width: 400px;
-            margin-bottom: 20px;
+            margin-top: 20vh;
         }
 
         .profile-img {
@@ -80,20 +87,26 @@
         .scroll-container {
             width: 100%;
             max-width: 400px;
-            margin-top: 20px;
+            margin-top: 40px;
             text-align: center;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .scroll-text {
             color: #fff;
             margin-bottom: 10px;
             font-size: 14px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .scroll-arrow {
             color: #fff;
             font-size: 24px;
             animation: bounce 2s infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         @keyframes bounce {
@@ -106,19 +119,6 @@
             60% {
                 transform: translateY(-10px);
             }
-        }
-
-        .bottom-image {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 40px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .bottom-image:hover {
-            transform: scale(1.02);
         }
     </style>
 </head>
@@ -136,8 +136,6 @@
         <div class="scroll-text">Kéo xuống để xem thêm</div>
         <div class="scroll-arrow">↓</div>
     </div>
-
-    <img src="images/anh2.jpg" alt="Ảnh bổ sung" class="bottom-image">
 
     <audio id="clickSound" preload="auto">
         <source src="sounds/click.ogg" type="audio/ogg">
@@ -166,6 +164,16 @@
         // Tải trước âm thanh
         window.addEventListener('load', function() {
             clickSound.load();
+        });
+
+        // Ẩn mũi tên khi cuộn xuống đủ xa
+        window.addEventListener('scroll', function() {
+            const scrollContainer = document.querySelector('.scroll-container');
+            if (window.scrollY > window.innerHeight) {
+                scrollContainer.style.opacity = '0';
+            } else {
+                scrollContainer.style.opacity = '1';
+            }
         });
     </script>
 </body>
