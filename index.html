@@ -71,6 +71,31 @@
         .btn:hover {
             background: rgba(0, 0, 0, 0.8);
         }
+
+        .sound-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sound-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sound-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .sound-btn.active {
+            background: rgba(255, 255, 255, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -81,6 +106,59 @@
         Trang web này giúp tôi kết nối với bạn.</p>
         <a href="mailto:dohytai99@gmail.com" class="btn">Liên hệ ngay</a>
         <a href="http://zalo.me/84907381975" class="btn" target="_blank">Kết nối Zalo</a>
+        
+        <div class="sound-controls">
+            <button class="sound-btn" onclick="toggleBackgroundMusic()">🎵 Nhạc nền</button>
+            <button class="sound-btn" onclick="playHoverSound()">🔊 Hiệu ứng hover</button>
+        </div>
     </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="sounds/background.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="hoverSound">
+        <source src="sounds/hover.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const hoverSound = document.getElementById('hoverSound');
+        const soundBtns = document.querySelectorAll('.sound-btn');
+        let isBackgroundMusicPlaying = false;
+
+        function toggleBackgroundMusic() {
+            if (isBackgroundMusicPlaying) {
+                backgroundMusic.pause();
+                soundBtns[0].classList.remove('active');
+            } else {
+                backgroundMusic.play();
+                soundBtns[0].classList.add('active');
+            }
+            isBackgroundMusicPlaying = !isBackgroundMusicPlaying;
+        }
+
+        function playHoverSound() {
+            hoverSound.currentTime = 0;
+            hoverSound.play();
+        }
+
+        // Thêm hiệu ứng âm thanh khi hover vào các nút
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                if (soundBtns[1].classList.contains('active')) {
+                    hoverSound.currentTime = 0;
+                    hoverSound.play();
+                }
+            });
+        });
+
+        // Thêm hiệu ứng âm thanh khi hover vào ảnh đại diện
+        document.querySelector('.profile-img').addEventListener('mouseenter', () => {
+            if (soundBtns[1].classList.contains('active')) {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            }
+        });
+    </script>
 </body>
 </html>
