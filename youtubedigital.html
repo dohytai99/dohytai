@@ -6,22 +6,35 @@
   <title>Trang Web Của Bạn</title>
   <style>
     /* CSS để video YouTube có chiều rộng đầy đủ và tỷ lệ 16:9 */
-    .responsive-video {
+    .video-container {
+      position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
-      height: auto;
+      padding-bottom: 56.25%; /* Tỷ lệ 16:9 */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
   <!-- Nhúng video YouTube với chiều rộng đầy đủ -->
-  <iframe
-    src="https://www.youtube.com/embed/GQjuEygcS3A"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
-    class="responsive-video">
-  </iframe>
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/2auh7co2lyo?si=JNISre0lmpqKFEc4"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
 </body>
 </html>
+
