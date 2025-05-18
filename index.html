@@ -11,12 +11,14 @@
 
     <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Giới thiệu cá nhân</title>
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
+    <!-- Thêm Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
@@ -72,7 +74,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            overflow-x: auto;
+            overflow: hidden;
             background-color: #fff;
         }
 
@@ -114,28 +116,15 @@
             }
         }
 
-        .horizontal-container {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            position: relative;
-            touch-action: pan-x;
-            overscroll-behavior-x: contain;
+        .swiper {
+            width: 100%;
+            height: 100%;
         }
 
-        .section {
-            flex: 0 0 100vw;
-            height: 100vh;
-            scroll-snap-align: start;
+        .swiper-slide {
             display: flex;
             justify-content: center;
             align-items: center;
-            touch-action: pan-x;
-            overscroll-behavior-x: contain;
         }
 
         .container {
@@ -298,28 +287,38 @@
             transform: translateX(100%);
         }
 
-        .dots-navigation {
+        .swiper-pagination {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
             z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 0;
+            pointer-events: none;
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
             background: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+            border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 5px;
+            pointer-events: auto;
         }
 
-        .dot.active {
+        .swiper-pagination-bullet-active {
             background: white;
             transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         @media (max-width: 480px) {
@@ -352,125 +351,151 @@
     </style>
 </head>
 <body>
-    <div class="horizontal-container">
-        <section class="section">
-            <div class="container">
-                <img src="images/vest.jpg" alt="Ảnh đại diện" class="profile-img">
-                <h1>Xin chào, tôi là<br>Donald Tài</h1>
-                <p>Tôi là một <b>Digital Entrepreneur</b>, đam mê <b>Kinh doanh điện tử</b>.  
-                Trang web này giúp tôi kết nối với bạn.</p>
-                <a href="mailto:dohytai99@gmail.com" class="btn">Liên hệ ngay</a>
-                <a href="http://zalo.me/84907381975" class="btn" target="_blank">Kết nối Zalo</a>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="container">
+                    <img src="images/vest.jpg" alt="Ảnh đại diện" class="profile-img">
+                    <h1>Xin chào, tôi là<br>Donald Tài</h1>
+                    <p>Tôi là một <b>Digital Entrepreneur</b>, đam mê <b>Kinh doanh điện tử</b>.  
+                    Trang web này giúp tôi kết nối với bạn.</p>
+                    <a href="mailto:dohytai99@gmail.com" class="btn">Liên hệ ngay</a>
+                    <a href="http://zalo.me/84907381975" class="btn" target="_blank">Kết nối Zalo</a>
+                </div>
             </div>
-        </section>
 
-        <section class="section">
-            <div class="container">
-                <h1>Kinh nghiệm</h1>
-                <p>Với nhiều năm kinh nghiệm trong lĩnh vực Digital Marketing và E-commerce, tôi đã giúp nhiều doanh nghiệp phát triển và mở rộng thị trường trực tuyến.</p>
-                <div class="btn">Xem thêm</div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <h1>Kinh nghiệm</h1>
+                    <p>Với nhiều năm kinh nghiệm trong lĩnh vực Digital Marketing và E-commerce, tôi đã giúp nhiều doanh nghiệp phát triển và mở rộng thị trường trực tuyến.</p>
+                    <div class="btn">Xem thêm</div>
+                </div>
             </div>
-        </section>
 
-        <section class="section">
-            <div class="container">
-                <h1>Dự án</h1>
-                <p>Đã thực hiện nhiều dự án thành công trong việc xây dựng và phát triển các chiến lược kinh doanh số cho các doanh nghiệp vừa và nhỏ.</p>
-                <div class="btn">Khám phá</div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <h1>Dự án</h1>
+                    <p>Đã thực hiện nhiều dự án thành công trong việc xây dựng và phát triển các chiến lược kinh doanh số cho các doanh nghiệp vừa và nhỏ.</p>
+                    <div class="btn">Khám phá</div>
+                </div>
             </div>
-        </section>
+        </div>
+        <div class="swiper-pagination"></div>
     </div>
 
-    <div class="dots-navigation">
-        <div class="dot active" data-index="0"></div>
-        <div class="dot" data-index="1"></div>
-        <div class="dot" data-index="2"></div>
-    </div>
-
+    <!-- Thêm Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const container = document.querySelector('.horizontal-container');
-        const dots = document.querySelectorAll('.dot');
-        
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let isScrolling = false;
-        
-        function isIOS() {
-            return [
-                'iPad Simulator',
-                'iPhone Simulator',
-                'iPod Simulator',
-                'iPad',
-                'iPhone',
-                'iPod'
-            ].includes(navigator.platform)
-            || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
-        }
-        
-        container.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            isScrolling = false;
-        }, { passive: true });
-        
-        container.addEventListener('touchmove', (e) => {
-            isScrolling = true;
-        }, { passive: true });
-        
-        container.addEventListener('touchend', (e) => {
-            if (!isScrolling) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }
-        }, { passive: true });
-        
-        function handleSwipe() {
-            const swipeThreshold = 30;
-            const currentIndex = Math.round(container.scrollLeft / container.clientWidth);
+        const swiper = new Swiper('.swiper', {
+            // Cấu hình cơ bản
+            direction: 'horizontal',
+            loop: false,
+            speed: 500,
             
-            if (touchEndX < touchStartX - swipeThreshold) {
-                if (currentIndex < dots.length - 1) {
-                    container.scrollTo({
-                        left: (currentIndex + 1) * container.clientWidth,
-                        behavior: 'smooth'
-                    });
-                }
-            } else if (touchEndX > touchStartX + swipeThreshold) {
-                if (currentIndex > 0) {
-                    container.scrollTo({
-                        left: (currentIndex - 1) * container.clientWidth,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        }
-        
-        container.addEventListener('scroll', () => {
-            if (!isScrolling) {
-                const scrollPosition = container.scrollLeft;
-                const sectionWidth = container.clientWidth;
-                const currentIndex = Math.round(scrollPosition / sectionWidth);
-                
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-            }
-        }, { passive: true });
+            // Cấu hình pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                type: 'bullets',
+                bulletElement: 'span',
+                bulletClass: 'swiper-pagination-bullet',
+                bulletActiveClass: 'swiper-pagination-bullet-active',
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '"></span>';
+                },
+            },
+            
+            // Cấu hình cho iOS
+            touchRatio: 1,
+            touchAngle: 45,
+            resistance: true,
+            resistanceRatio: 0.85,
+            
+            // Cấu hình cho iOS Safari
+            watchSlidesProgress: true,
+            preventInteractionOnTransition: true,
+            
+            // Cấu hình cho vuốt
+            touchStartPreventDefault: false,
+            touchMoveStopPropagation: false,
+            
+            // Cấu hình cho hiệu ứng
+            effect: 'slide',
+            grabCursor: true,
 
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                container.scrollTo({
-                    left: index * container.clientWidth,
-                    behavior: 'smooth'
-                });
-            });
+            // Cấu hình cho MacBook
+            mousewheel: {
+                forceToAxis: true,
+                sensitivity: 1,
+                releaseOnEdges: true
+            },
+            
+            // Cấu hình cho trackpad
+            touchEventsTarget: 'container',
+            touchRatio: 1,
+            touchAngle: 45,
+            touchMoveStopPropagation: false,
+            touchStartPreventDefault: false,
+            touchStartForcePreventDefault: false,
+            touchMoveForcePreventDefault: false,
+            
+            // Cấu hình cho vuốt 2 ngón tay
+            allowTouchMove: true,
+            threshold: 5,
+            touchStartThreshold: 5,
+            touchMoveStopPropagation: false,
+            touchStartPreventDefault: false,
+            touchStartForcePreventDefault: false,
+            touchMoveForcePreventDefault: false,
+            
+            // Cấu hình cho chuyển trang mượt mà
+            followFinger: true,
+            shortSwipes: true,
+            longSwipes: true,
+            longSwipesRatio: 0.5,
+            longSwipesMs: 300,
+            shortSwipesMs: 300,
+            
+            // Cấu hình cho hiệu ứng chuyển trang
+            effect: 'slide',
+            fadeEffect: {
+                crossFade: true
+            },
+            
+            // Cấu hình cho animation
+            speed: 500,
+            cssMode: false,
+            updateOnWindowResize: true,
+            observer: true,
+            observeParents: true,
+            
+            // Cấu hình cho keyboard
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+                pageUpDown: true
+            },
+            
+            // Cấu hình cho a11y
+            a11y: {
+                prevSlideMessage: 'Previous slide',
+                nextSlideMessage: 'Next slide',
+                firstSlideMessage: 'This is the first slide',
+                lastSlideMessage: 'This is the last slide'
+            }
         });
-        
-        if (isIOS()) {
-            const meta = document.createElement('meta');
-            meta.name = 'viewport';
-            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-            document.head.appendChild(meta);
-        }
+
+        // Thêm sự kiện cho trackpad
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                if (e.deltaY > 0) {
+                    swiper.slideNext();
+                } else {
+                    swiper.slidePrev();
+                }
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
