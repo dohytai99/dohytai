@@ -13,19 +13,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giới thiệu cá nhân</title>
-    <!-- Favicon cơ bản -->
-    <link rel="icon" type="image/x-icon" href="images/favicon-32x32.png">
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon-32x32.png">
-    <!-- Favicon cho các thiết bị -->
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <!-- Meta tags cho PWA -->
-    <meta name="theme-color" content="#ffffff">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Giới thiệu cá nhân">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 
@@ -132,6 +123,7 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             position: relative;
+            touch-action: pan-x;
         }
 
         .section {
@@ -141,6 +133,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            touch-action: pan-x;
         }
 
         .container {
@@ -395,6 +388,39 @@
     <script>
         const container = document.querySelector('.horizontal-container');
         const dots = document.querySelectorAll('.dot');
+        
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+        
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const currentIndex = Math.round(container.scrollLeft / container.clientWidth);
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                if (currentIndex < dots.length - 1) {
+                    container.scrollTo({
+                        left: (currentIndex + 1) * container.clientWidth,
+                        behavior: 'smooth'
+                    });
+                }
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                if (currentIndex > 0) {
+                    container.scrollTo({
+                        left: (currentIndex - 1) * container.clientWidth,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
         
         container.addEventListener('scroll', () => {
             const scrollPosition = container.scrollLeft;
