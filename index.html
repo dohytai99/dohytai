@@ -124,6 +124,7 @@
             -webkit-overflow-scrolling: touch;
             position: relative;
             touch-action: pan-x;
+            overscroll-behavior-x: contain;
         }
 
         .section {
@@ -134,6 +135,7 @@
             justify-content: center;
             align-items: center;
             touch-action: pan-x;
+            overscroll-behavior-x: contain;
         }
 
         .container {
@@ -391,18 +393,38 @@
         
         let touchStartX = 0;
         let touchEndX = 0;
+        let isScrolling = false;
+        
+        function isIOS() {
+            return [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ].includes(navigator.platform)
+            || (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+        }
         
         container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        }, false);
+            isScrolling = false;
+        }, { passive: true });
+        
+        container.addEventListener('touchmove', (e) => {
+            isScrolling = true;
+        }, { passive: true });
         
         container.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
+            if (!isScrolling) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }
+        }, { passive: true });
         
         function handleSwipe() {
-            const swipeThreshold = 50;
+            const swipeThreshold = 30;
             const currentIndex = Math.round(container.scrollLeft / container.clientWidth);
             
             if (touchEndX < touchStartX - swipeThreshold) {
@@ -423,14 +445,16 @@
         }
         
         container.addEventListener('scroll', () => {
-            const scrollPosition = container.scrollLeft;
-            const sectionWidth = container.clientWidth;
-            const currentIndex = Math.round(scrollPosition / sectionWidth);
-            
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        });
+            if (!isScrolling) {
+                const scrollPosition = container.scrollLeft;
+                const sectionWidth = container.clientWidth;
+                const currentIndex = Math.round(scrollPosition / sectionWidth);
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+        }, { passive: true });
 
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => {
@@ -440,6 +464,13 @@
                 });
             });
         });
+        
+        if (isIOS()) {
+            const meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+            document.head.appendChild(meta);
+        }
     </script>
 </body>
 </html>
