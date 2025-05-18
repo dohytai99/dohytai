@@ -132,6 +132,7 @@
             background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 15px;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             width: 400px;
@@ -142,6 +143,20 @@
             z-index: 2;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+            .container {
+                background: rgba(255, 255, 255, 0.1);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+            .container {
+                background: rgba(255, 255, 255, 0.8);
+            }
         }
 
         .container:hover {
