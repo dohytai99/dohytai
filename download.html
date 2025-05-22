@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoHotkey Script Installer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .steps {
+            text-align: left;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AutoHotkey Script Installer</h1>
+        <p>This installer will help you set up the "Hold C to Send Q+Z" script.</p>
+        
+        <div class="steps">
+            <h2>Installation Steps:</h2>
+            <ol>
+                <li>First, install AutoHotkey if you haven't already</li>
+                <li>Then, download and run the script</li>
+            </ol>
+        </div>
+
+        <a href="https://www.autohotkey.com/download/ahk-install.exe" class="button" id="ahk-installer">
+            1. Download AutoHotkey
+        </a>
+        
+        <a href="hold_c_send_qz.ahk" class="button" id="script-download">
+            2. Download Script
+        </a>
+
+        <p style="margin-top: 20px;">
+            After installation, the script will run in the background.<br>
+            You can find it in the system tray (bottom-right corner).
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('script-download').addEventListener('click', function() {
+            setTimeout(function() {
+                alert('Script downloaded! Double-click the downloaded file to run it.');
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
