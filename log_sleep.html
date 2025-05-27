@@ -47,7 +47,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const encodedToken = urlParams.get('token');
             const type = urlParams.get('type');
-            const format = urlParams.get('format') || 'html'; // 'html' hoặc 'json'
+            const format = urlParams.get('format') || 'html';
             
             if (!encodedToken) {
                 throw new Error('Thiếu token xác thực');
@@ -122,25 +122,25 @@
                 if (updateResponse.ok) {
                     const emoji = type === 'sleep' ? '😴' : '🌅';
                     const action = type === 'sleep' ? 'đi ngủ' : 'thức dậy';
+                    const time = vietnamTime.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
                     
                     if (format === 'json') {
-                        // Trả về JSON nếu được yêu cầu
+                        // Đặt Content-Type header cho JSON response
+                        document.body.innerHTML = '';
                         const result = {
                             success: true,
                             message: `Đã ghi thời gian ${action}`,
-                            time: vietnamTime.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })
+                            time: time,
+                            type: type
                         };
-                        document.body.innerHTML = JSON.stringify(result);
+                        // Đảm bảo response là plain text
+                        document.write(JSON.stringify(result));
                     } else {
                         // Hiển thị HTML bình thường
                         document.getElementById('result').innerHTML = `
                             <div class="success">${emoji} Đã ghi thời gian ${action}</div>
-                            <div class="time">${vietnamTime.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}</div>
+                            <div class="time">${time}</div>
                         `;
-                        // Tự động đóng sau 2 giây nếu có tham số autoclose
-                        if (urlParams.get('autoclose') === 'true') {
-                            setTimeout(() => window.close(), 2000);
-                        }
                     }
                 } else {
                     throw new Error('Không thể cập nhật dữ liệu');
@@ -152,7 +152,8 @@
                 };
                 
                 if (format === 'json') {
-                    document.body.innerHTML = JSON.stringify(errorResult);
+                    document.body.innerHTML = '';
+                    document.write(JSON.stringify(errorResult));
                 } else {
                     document.getElementById('result').innerHTML = `
                         <div class="error">⚠ Có lỗi: ${error.message}</div>
