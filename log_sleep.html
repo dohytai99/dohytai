@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logging Sleep Time</title>
+    <title>Ghi nhận thời gian</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             padding: 20px;
             text-align: center;
+            background-color: #f8f9fa;
         }
         .success {
             color: #28a745;
@@ -18,27 +19,48 @@
         .time {
             color: #666;
             font-size: 1.2em;
+            margin: 10px 0;
         }
         .error {
             color: #dc3545;
             font-size: 1.2em;
             margin: 20px 0;
         }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            max-width: 400px;
+        }
     </style>
 </head>
 <body>
-    <div id="result">Đang ghi thời gian...</div>
+    <div class="card">
+        <div id="result">Đang ghi thời gian...</div>
+    </div>
 
     <script>
-        // Lấy token từ URL parameter
-        function getToken() {
+        // Lấy token và loại ghi nhận từ URL
+        function getParams() {
             const urlParams = new URLSearchParams(window.location.search);
             const encodedToken = urlParams.get('token');
+            const type = urlParams.get('type');
+            const format = urlParams.get('format') || 'html'; // 'html' hoặc 'json'
+            
             if (!encodedToken) {
                 throw new Error('Thiếu token xác thực');
             }
-            // Giải mã token
-            return atob(encodedToken);
+            if (!type || (type !== 'sleep' && type !== 'wakeup')) {
+                throw new Error('Loại ghi nhận không hợp lệ');
+            }
+            
+            return {
+                token: atob(encodedToken),
+                type: type,
+                format: format
+            };
         }
 
         const REPO_OWNER = 'dohytai99';
@@ -47,8 +69,8 @@
 
         async function logSleepTime() {
             try {
-                // Lấy token từ URL
-                const GITHUB_TOKEN = getToken();
+                // Lấy thông tin từ URL
+                const { token: GITHUB_TOKEN, type, format } = getParams();
 
                 // 1. Lấy thời gian hiện tại theo múi giờ Việt Nam
                 const now = new Date();
@@ -58,7 +80,8 @@
                 const newEntry = {
                     date: vietnamTime.toISOString().split('T')[0],
                     time: vietnamTime.toTimeString().split(' ')[0],
-                    timestamp: vietnamTime.toISOString()
+                    timestamp: vietnamTime.toISOString(),
+                    type: type
                 };
 
                 // 3. Lấy nội dung file hiện tại từ GitHub
@@ -90,24 +113,51 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: `Ghi thời gian ngủ: ${vietnamTime.toLocaleString('vi-VN')}`,
+                        message: `Ghi thời gian ${type === 'sleep' ? 'đi ngủ' : 'thức dậy'}: ${vietnamTime.toLocaleString('vi-VN')}`,
                         content: btoa(JSON.stringify(currentContent, null, 2)),
                         sha: sha
                     })
                 });
 
                 if (updateResponse.ok) {
-                    document.getElementById('result').innerHTML = `
-                        <div class="success">✓ Đã ghi thời gian ngủ</div>
-                        <div class="time">${vietnamTime.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}</div>
-                    `;
+                    const emoji = type === 'sleep' ? '😴' : '🌅';
+                    const action = type === 'sleep' ? 'đi ngủ' : 'thức dậy';
+                    
+                    if (format === 'json') {
+                        // Trả về JSON nếu được yêu cầu
+                        const result = {
+                            success: true,
+                            message: `Đã ghi thời gian ${action}`,
+                            time: vietnamTime.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })
+                        };
+                        document.body.innerHTML = JSON.stringify(result);
+                    } else {
+                        // Hiển thị HTML bình thường
+                        document.getElementById('result').innerHTML = `
+                            <div class="success">${emoji} Đã ghi thời gian ${action}</div>
+                            <div class="time">${vietnamTime.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}</div>
+                        `;
+                        // Tự động đóng sau 2 giây nếu có tham số autoclose
+                        if (urlParams.get('autoclose') === 'true') {
+                            setTimeout(() => window.close(), 2000);
+                        }
+                    }
                 } else {
                     throw new Error('Không thể cập nhật dữ liệu');
                 }
             } catch (error) {
-                document.getElementById('result').innerHTML = `
-                    <div class="error">⚠ Có lỗi: ${error.message}</div>
-                `;
+                const errorResult = {
+                    success: false,
+                    error: error.message
+                };
+                
+                if (format === 'json') {
+                    document.body.innerHTML = JSON.stringify(errorResult);
+                } else {
+                    document.getElementById('result').innerHTML = `
+                        <div class="error">⚠ Có lỗi: ${error.message}</div>
+                    `;
+                }
             }
         }
 
