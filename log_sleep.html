@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="application/json">
     <script>
-        // Đặt content type là application/json
-        document.contentType = 'application/json';
-
         async function processRequest() {
             try {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -14,10 +11,16 @@
                 const type = urlParams.get('type');
                 
                 if (!encodedToken) {
-                    throw new Error('Thiếu token xác thực');
+                    return JSON.stringify({
+                        success: false,
+                        error: 'Thiếu token xác thực'
+                    });
                 }
                 if (!type || (type !== 'sleep' && type !== 'wakeup')) {
-                    throw new Error('Loại ghi nhận không hợp lệ');
+                    return JSON.stringify({
+                        success: false,
+                        error: 'Loại ghi nhận không hợp lệ'
+                    });
                 }
 
                 const GITHUB_TOKEN = atob(encodedToken);
@@ -77,25 +80,30 @@
                     const action = type === 'sleep' ? 'đi ngủ' : 'thức dậy';
                     const time = vietnamTime.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
                     
-                    document.write(JSON.stringify({
+                    return JSON.stringify({
                         success: true,
                         message: `Đã ghi thời gian ${action}`,
                         time: time,
                         type: type
-                    }));
+                    });
                 } else {
-                    throw new Error('Không thể cập nhật dữ liệu');
+                    return JSON.stringify({
+                        success: false,
+                        error: 'Không thể cập nhật dữ liệu'
+                    });
                 }
             } catch (error) {
-                document.write(JSON.stringify({
+                return JSON.stringify({
                     success: false,
                     error: error.message
-                }));
+                });
             }
         }
 
-        // Xử lý ngay khi trang load
-        processRequest();
+        // Xử lý request và trả về response
+        processRequest().then(result => {
+            document.body.textContent = result;
+        });
     </script>
 </head>
 <body>
