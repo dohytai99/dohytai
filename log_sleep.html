@@ -19,19 +19,37 @@
             color: #666;
             font-size: 1.2em;
         }
+        .error {
+            color: #dc3545;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
     <div id="result">Đang ghi thời gian...</div>
 
     <script>
-        const GITHUB_TOKEN = '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';
+        // Lấy token từ URL parameter
+        function getToken() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedToken = urlParams.get('token');
+            if (!encodedToken) {
+                throw new Error('Thiếu token xác thực');
+            }
+            // Giải mã token
+            return atob(encodedToken);
+        }
+
         const REPO_OWNER = 'dohytai99';
         const REPO_NAME = 'dohytai';
         const FILE_PATH = 'data/sleep_data.json';
 
         async function logSleepTime() {
             try {
+                // Lấy token từ URL
+                const GITHUB_TOKEN = getToken();
+
                 // 1. Lấy thời gian hiện tại theo múi giờ Việt Nam
                 const now = new Date();
                 const vietnamTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' }));
@@ -88,7 +106,7 @@
                 }
             } catch (error) {
                 document.getElementById('result').innerHTML = `
-                    <div style="color: #dc3545;">⚠ Có lỗi: ${error.message}</div>
+                    <div class="error">⚠ Có lỗi: ${error.message}</div>
                 `;
             }
         }
