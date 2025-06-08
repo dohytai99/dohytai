@@ -87,5 +87,11 @@
     "time": "08:38:47",
     "timestamp": "2025-06-08T08:38:47.000Z",
     "type": "breakfast"
+  },
+  {
+    "date": "2025-06-08",
+    "time": "10:00:13",
+    "timestamp": "2025-06-08T10:00:13.000Z",
+    "type": "breakfast"
   }
 ]
