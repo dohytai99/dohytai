@@ -99,5 +99,11 @@
     "time": "09:31:37",
     "timestamp": "2025-06-09T09:31:37.000Z",
     "type": "breakfast"
+  },
+  {
+    "date": "2025-06-09",
+    "time": "09:40:48",
+    "timestamp": "2025-06-09T09:40:48.000Z",
+    "type": "breakfast"
   }
 ]
