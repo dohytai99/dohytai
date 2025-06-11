@@ -10,5 +10,11 @@
     "time": "13:14:32",
     "timestamp": "2025-06-11T13:14:32.000Z",
     "type": "leave_home"
+  },
+  {
+    "date": "2025-06-11",
+    "time": "13:14:44",
+    "timestamp": "2025-06-11T13:14:44.000Z",
+    "type": "leave_home"
   }
 ]
