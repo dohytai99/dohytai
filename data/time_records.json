@@ -4,5 +4,11 @@
     "time": "13:07:37",
     "timestamp": "2025-06-11T13:07:37.000Z",
     "type": "leave_home"
+  },
+  {
+    "date": "2025-06-11",
+    "time": "13:14:32",
+    "timestamp": "2025-06-11T13:14:32.000Z",
+    "type": "leave_home"
   }
 ]
