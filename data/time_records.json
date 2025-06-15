@@ -70,5 +70,11 @@
     "time": "10:46:40",
     "timestamp": "2025-06-15T10:46:40.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-06-15",
+    "time": "12:37:05",
+    "timestamp": "2025-06-15T12:37:05.000Z",
+    "type": "leave_home"
   }
 ]
