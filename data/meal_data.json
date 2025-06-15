@@ -201,5 +201,11 @@
     "time": "10:00:04",
     "timestamp": "2025-06-15T10:00:04.000Z",
     "type": "breakfast"
+  },
+  {
+    "date": "2025-06-15",
+    "time": "12:37:10",
+    "timestamp": "2025-06-15T12:37:10.000Z",
+    "type": "breakfast"
   }
 ]
