@@ -160,5 +160,11 @@
     "time": "07:48:08",
     "timestamp": "2025-06-17T07:48:08.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-06-17",
+    "time": "07:50:36",
+    "timestamp": "2025-06-17T07:50:36.000Z",
+    "type": "arrive_home"
   }
 ]
