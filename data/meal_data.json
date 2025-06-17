@@ -237,5 +237,11 @@
     "time": "16:05:19",
     "timestamp": "2025-06-17T16:05:19.000Z",
     "type": "breakfast"
+  },
+  {
+    "date": "2025-06-17",
+    "time": "16:20:07",
+    "timestamp": "2025-06-17T16:20:07.000Z",
+    "type": "breakfast"
   }
 ]
