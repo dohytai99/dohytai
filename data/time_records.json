@@ -550,5 +550,11 @@
     "time": "12:06:03",
     "timestamp": "2025-06-24T12:06:03.000Z",
     "type": "arrive_work"
+  },
+  {
+    "date": "2025-06-24",
+    "time": "18:04:53",
+    "timestamp": "2025-06-24T18:04:53.000Z",
+    "type": "leave_work"
   }
 ]
