@@ -682,5 +682,11 @@
     "time": "08:23:48",
     "timestamp": "2025-06-28T08:23:48.000Z",
     "type": "leave_home"
+  },
+  {
+    "date": "2025-06-28",
+    "time": "10:44:27",
+    "timestamp": "2025-06-28T10:44:27.000Z",
+    "type": "arrive_work"
   }
 ]
