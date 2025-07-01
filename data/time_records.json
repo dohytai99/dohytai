@@ -802,5 +802,11 @@
     "time": "09:29:53",
     "timestamp": "2025-07-01T09:29:53.000Z",
     "type": "arrive_work"
+  },
+  {
+    "date": "2025-07-01",
+    "time": "18:16:13",
+    "timestamp": "2025-07-01T18:16:13.000Z",
+    "type": "leave_work"
   }
 ]
