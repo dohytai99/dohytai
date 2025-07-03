@@ -886,5 +886,11 @@
     "time": "08:34:46",
     "timestamp": "2025-07-03T08:34:46.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-07-03",
+    "time": "08:59:30",
+    "timestamp": "2025-07-03T08:59:30.000Z",
+    "type": "leave_home"
   }
 ]
