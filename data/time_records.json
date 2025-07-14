@@ -1348,5 +1348,11 @@
     "time": "08:59:17",
     "timestamp": "2025-07-14T08:59:17.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-07-14",
+    "time": "09:02:37",
+    "timestamp": "2025-07-14T09:02:37.000Z",
+    "type": "arrive_home"
   }
 ]
