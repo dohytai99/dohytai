@@ -1738,5 +1738,11 @@
     "time": "20:32:36",
     "timestamp": "2025-07-20T20:32:36.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-07-21",
+    "time": "12:48:57",
+    "timestamp": "2025-07-21T12:48:57.000Z",
+    "type": "arrive_work"
   }
 ]
