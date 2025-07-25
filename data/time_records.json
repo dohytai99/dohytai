@@ -1942,5 +1942,11 @@
     "time": "11:29:18",
     "timestamp": "2025-07-25T11:29:18.000Z",
     "type": "arrive_work"
+  },
+  {
+    "date": "2025-07-25",
+    "time": "19:27:21",
+    "timestamp": "2025-07-25T19:27:21.000Z",
+    "type": "arrive_work"
   }
 ]
