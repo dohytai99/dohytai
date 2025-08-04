@@ -2320,5 +2320,11 @@
     "time": "09:40:33",
     "timestamp": "2025-08-04T09:40:33.000Z",
     "type": "arrive_work"
+  },
+  {
+    "date": "2025-08-04",
+    "time": "22:43:06",
+    "timestamp": "2025-08-04T22:43:06.000Z",
+    "type": "arrive_home"
   }
 ]
