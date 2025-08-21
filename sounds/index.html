@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Upload to YouTube & Script Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fab fa-youtube"></i> Video Upload to YouTube & Script Collection</h1>
+            <p>Upload video MP4 trực tiếp lên YouTube và thu thập script</p>
+        </header>
+
+        <main class="main-content">
+            <!-- YouTube Authentication Section -->
+            <section class="auth-section" id="authSection">
+                <div class="auth-content">
+                    <i class="fab fa-youtube auth-icon"></i>
+                    <h3>Kết nối với YouTube</h3>
+                    <p>Đăng nhập để upload video lên kênh YouTube của bạn</p>
+                    <button class="auth-btn" id="authBtn">
+                        <i class="fas fa-sign-in-alt"></i> Đăng nhập YouTube
+                    </button>
+                    <div class="auth-status" id="authStatus">
+                        <span class="status-text">Chưa đăng nhập</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection" style="display: none;">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h3>Kéo thả video MP4 vào đây</h3>
+                        <p>Hoặc click để chọn file</p>
+                        <input type="file" id="fileInput" accept=".mp4" multiple>
+                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                            <i class="fas fa-folder-open"></i> Chọn File
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Video Details Form -->
+                <div class="video-details-form" id="videoDetailsForm" style="display: none;">
+                    <h4><i class="fas fa-edit"></i> Thông tin Video YouTube</h4>
+                    <div class="form-group">
+                        <label for="videoTitle">Tiêu đề video:</label>
+                        <input type="text" id="videoTitle" placeholder="Nhập tiêu đề video..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="videoDescription">Mô tả:</label>
+                        <textarea id="videoDescription" placeholder="Nhập mô tả video..." rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="videoTags">Tags (phân cách bằng dấu phẩy):</label>
+                        <input type="text" id="videoTags" placeholder="tag1, tag2, tag3">
+                    </div>
+                    <div class="form-group">
+                        <label for="videoPrivacy">Quyền riêng tư:</label>
+                        <select id="videoPrivacy">
+                            <option value="private">Riêng tư</option>
+                            <option value="unlisted">Không công khai</option>
+                            <option value="public">Công khai</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="uploadToYoutubeBtn">
+                        <i class="fab fa-youtube"></i> Upload lên YouTube
+                    </button>
+                </div>
+
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p id="progressText">Đang upload...</p>
+                </div>
+            </section>
+
+            <!-- Video List Section -->
+            <section class="video-list-section">
+                <h2><i class="fas fa-list"></i> Danh sách Video</h2>
+                <div class="video-grid" id="videoGrid">
+                    <!-- Videos will be displayed here -->
+                </div>
+                <div class="no-videos" id="noVideos">
+                    <i class="fas fa-inbox"></i>
+                    <p>Chưa có video nào được upload</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Video Modal -->
+        <div class="modal" id="videoModal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2 id="modalTitle">Video Details</h2>
+                <div class="video-player-container">
+                    <video id="modalVideo" controls>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-actions">
+                    <button class="btn btn-primary" id="downloadScript">
+                        <i class="fas fa-download"></i> Tải Script
+                    </button>
+                    <button class="btn btn-success" id="viewOnYoutube" style="display: none;">
+                        <i class="fab fa-youtube"></i> Xem trên YouTube
+                    </button>
+                    <button class="btn btn-danger" id="deleteVideo">
+                        <i class="fas fa-trash"></i> Xóa Video
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

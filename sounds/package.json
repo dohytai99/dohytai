@@ -1,0 +1,36 @@
+{
+  "name": "video-upload-script-collection",
+  "version": "1.0.0",
+  "description": "Trang web upload video MP4 để thu thập script",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "video",
+    "upload",
+    "mp4",
+    "script",
+    "collection",
+    "web",
+    "html5",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/video-upload-script-collection.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/video-upload-script-collection/issues"
+  },
+  "homepage": "https://github.com/yourusername/video-upload-script-collection#readme",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
