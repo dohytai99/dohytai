@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Static - GitHub Pages</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0ea5e9" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Chat Static</h1>
+      <div class="user">
+        <label for="username">Tên:</label>
+        <input id="username" type="text" placeholder="Nhập tên..." maxlength="24" />
+      </div>
+    </header>
+
+    <main>
+      <ul id="messages" class="messages"></ul>
+    </main>
+
+    <form id="form" autocomplete="off">
+      <input id="input" placeholder="Nhập tin nhắn..." />
+      <button type="submit">Gửi</button>
+    </form>
+    
+    <div class="actions">
+      <button id="clearBtn" class="clear-btn">Xóa tin nhắn</button>
+      <button id="exportBtn" class="export-btn">Xuất tin nhắn</button>
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
