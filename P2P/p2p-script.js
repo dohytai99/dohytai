@@ -9,6 +9,9 @@ class P2PFileTransfer {
         this.receivedFiles = [];
         this.fileChunks = new Map();
         this.chunkSize = 64 * 1024; // 64KB chunks
+        this.reconnectAttempts = 0;
+        this.maxReconnectAttempts = 3;
+        this.reconnectInterval = null;
         
         this.initializeApp();
     }
@@ -50,7 +53,7 @@ class P2PFileTransfer {
             this.roomCode = this.generateRoomCode();
             this.isHost = true;
             
-            // Initialize PeerJS
+            // Initialize PeerJS with better configuration
             this.peer = new Peer(this.roomCode, {
                 host: 'peerjs-server.herokuapp.com',
                 port: 443,
@@ -58,9 +61,14 @@ class P2PFileTransfer {
                 config: {
                     'iceServers': [
                         { urls: 'stun:stun.l.google.com:19302' },
-                        { urls: 'stun:stun1.l.google.com:19302' }
+                        { urls: 'stun:stun1.l.google.com:19302' },
+                        { urls: 'stun:stun2.l.google.com:19302' },
+                        { urls: 'stun:stun3.l.google.com:19302' },
+                        { urls: 'stun:stun4.l.google.com:19302' }
                     ]
-                }
+                },
+                debug: 3,
+                retryLimit: 5
             });
 
             this.setupPeerEventListeners();
@@ -92,7 +100,7 @@ class P2PFileTransfer {
             this.roomCode = roomCode;
             this.isHost = false;
             
-            // Initialize PeerJS
+            // Initialize PeerJS with better configuration
             this.peer = new Peer({
                 host: 'peerjs-server.herokuapp.com',
                 port: 443,
@@ -100,9 +108,14 @@ class P2PFileTransfer {
                 config: {
                     'iceServers': [
                         { urls: 'stun:stun.l.google.com:19302' },
-                        { urls: 'stun:stun1.l.google.com:19302' }
+                        { urls: 'stun:stun1.l.google.com:19302' },
+                        { urls: 'stun:stun2.l.google.com:19302' },
+                        { urls: 'stun:stun3.l.google.com:19302' },
+                        { urls: 'stun:stun4.l.google.com:19302' }
                     ]
-                }
+                },
+                debug: 3,
+                retryLimit: 5
             });
 
             this.setupPeerEventListeners();
@@ -123,6 +136,7 @@ class P2PFileTransfer {
         this.peer.on('open', (id) => {
             console.log('Peer connected with ID:', id);
             this.updateStatus('Đã kết nối', 'connected');
+            this.reconnectAttempts = 0; // Reset reconnect attempts
             
             if (this.isHost) {
                 this.updateConnectionStatus('Chờ thiết bị khác tham gia...');
@@ -136,25 +150,95 @@ class P2PFileTransfer {
             this.connection = conn;
             this.setupConnectionEventListeners();
             this.updateConnectionStatus('Đã kết nối với thiết bị khác');
+            this.showReconnectButton(false);
         });
 
         this.peer.on('error', (error) => {
             console.error('Peer error:', error);
             this.updateStatus('Lỗi kết nối', 'error');
             this.updateConnectionStatus('Lỗi: ' + error.message);
+            
+            // Try to reconnect automatically
+            if (this.reconnectAttempts < this.maxReconnectAttempts) {
+                this.scheduleReconnect();
+            } else {
+                this.showReconnectButton(true);
+            }
         });
 
         this.peer.on('disconnected', () => {
             console.log('Peer disconnected');
             this.updateStatus('Mất kết nối', 'disconnected');
             this.updateConnectionStatus('Mất kết nối với thiết bị khác');
+            
+            // Try to reconnect automatically
+            if (this.reconnectAttempts < this.maxReconnectAttempts) {
+                this.scheduleReconnect();
+            } else {
+                this.showReconnectButton(true);
+            }
         });
+
+        this.peer.on('close', () => {
+            console.log('Peer connection closed');
+            this.updateStatus('Kết nối đã đóng', 'disconnected');
+            this.updateConnectionStatus('Kết nối đã đóng');
+        });
+    }
+
+    // Schedule automatic reconnect
+    scheduleReconnect() {
+        this.reconnectAttempts++;
+        const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 10000); // Exponential backoff
+        
+        this.updateConnectionStatus(`Đang thử kết nối lại... (${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
+        
+        setTimeout(() => {
+            if (this.peer && this.peer.disconnected) {
+                this.peer.reconnect();
+            }
+        }, delay);
+    }
+
+    // Show reconnect button
+    showReconnectButton(show) {
+        let reconnectBtn = document.getElementById('reconnectBtn');
+        
+        if (show && !reconnectBtn) {
+            reconnectBtn = document.createElement('button');
+            reconnectBtn.id = 'reconnectBtn';
+            reconnectBtn.className = 'reconnect-btn';
+            reconnectBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Kết nối lại';
+            reconnectBtn.onclick = () => this.manualReconnect();
+            
+            const connectionInfo = document.getElementById('connectionInfo');
+            connectionInfo.appendChild(reconnectBtn);
+            
+            // Show troubleshooting tips
+            document.getElementById('troubleshootingTips').style.display = 'block';
+        } else if (!show && reconnectBtn) {
+            reconnectBtn.remove();
+            document.getElementById('troubleshootingTips').style.display = 'none';
+        }
+    }
+
+    // Manual reconnect
+    manualReconnect() {
+        this.reconnectAttempts = 0;
+        this.updateConnectionStatus('Đang kết nối lại...');
+        
+        if (this.peer) {
+            this.peer.reconnect();
+        }
     }
 
     // Connect to host (Client)
     connectToHost() {
         try {
-            this.connection = this.peer.connect(this.roomCode);
+            this.connection = this.peer.connect(this.roomCode, {
+                reliable: true,
+                maxRetries: 3
+            });
             this.setupConnectionEventListeners();
             this.updateConnectionStatus('Đang kết nối với chủ phòng...');
         } catch (error) {
@@ -168,6 +252,7 @@ class P2PFileTransfer {
         this.connection.on('open', () => {
             console.log('Connection established');
             this.updateConnectionStatus('Đã kết nối thành công!');
+            this.showReconnectButton(false);
         });
 
         this.connection.on('data', (data) => {
@@ -177,11 +262,13 @@ class P2PFileTransfer {
         this.connection.on('close', () => {
             console.log('Connection closed');
             this.updateConnectionStatus('Kết nối đã đóng');
+            this.showReconnectButton(true);
         });
 
         this.connection.on('error', (error) => {
             console.error('Connection error:', error);
             this.updateConnectionStatus('Lỗi kết nối: ' + error.message);
+            this.showReconnectButton(true);
         });
     }
 
