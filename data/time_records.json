@@ -2992,5 +2992,11 @@
     "time": "20:35:10",
     "timestamp": "2025-08-28T20:35:10.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-08-29",
+    "time": "08:41:43",
+    "timestamp": "2025-08-29T08:41:43.000Z",
+    "type": "arrive_home"
   }
 ]
