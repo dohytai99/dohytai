@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Transfer P2P - Chia sẻ trực tiếp</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-network-wired"></i> File Transfer P2P</h1>
+            <p>Chia sẻ file trực tiếp giữa các thiết bị - Không cần server</p>
+        </header>
+
+        <main>
+            <!-- Connection Section -->
+            <section class="connection-section" id="connectionSection">
+                <div class="connection-content">
+                    <h3><i class="fas fa-link"></i> Kết nối P2P</h3>
+                    
+                    <div class="connection-methods">
+                        <!-- Host Mode -->
+                        <div class="connection-method">
+                            <h4><i class="fas fa-server"></i> Tạo phòng (Host)</h4>
+                            <p>Bạn sẽ tạo một phòng và chia sẻ mã kết nối</p>
+                            <button class="host-btn" onclick="createRoom()">
+                                <i class="fas fa-plus"></i> Tạo Phòng Mới
+                            </button>
+                        </div>
+
+                        <!-- Join Mode -->
+                        <div class="connection-method">
+                            <h4><i class="fas fa-sign-in-alt"></i> Tham gia phòng (Join)</h4>
+                            <p>Nhập mã kết nối để tham gia phòng</p>
+                            <div class="join-input">
+                                <input type="text" id="roomCode" placeholder="Nhập mã phòng..." maxlength="6">
+                                <button class="join-btn" onclick="joinRoom()">
+                                    <i class="fas fa-sign-in-alt"></i> Tham Gia
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="connection-info" id="connectionInfo" style="display: none;">
+                        <div class="status-indicator">
+                            <span class="status-dot" id="statusDot"></span>
+                            <span id="statusText">Đang kết nối...</span>
+                        </div>
+                        <div class="room-info" id="roomInfo" style="display: none;">
+                            <p><strong>Mã phòng:</strong> <span id="roomCodeDisplay"></span></p>
+                            <p><strong>Trạng thái:</strong> <span id="connectionStatus"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- File Transfer Section -->
+            <section class="transfer-section" id="transferSection" style="display: none;">
+                <div class="transfer-content">
+                    <h3><i class="fas fa-exchange-alt"></i> Chuyển file P2P</h3>
+                    
+                    <!-- File Upload -->
+                    <div class="file-upload-area">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <h4>Kéo thả file vào đây hoặc click để chọn</h4>
+                                <p>File sẽ được gửi trực tiếp đến thiết bị khác</p>
+                                <input type="file" id="fileInput" multiple accept="*/*" style="display: none;">
+                                <button class="select-btn" onclick="document.getElementById('fileInput').click()">
+                                    <i class="fas fa-folder-open"></i> Chọn File
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="file-list" id="fileList" style="display: none;">
+                            <h4>Files đã chọn:</h4>
+                            <div id="selectedFiles"></div>
+                            <button class="send-btn" id="sendBtn" onclick="sendFiles()">
+                                <i class="fas fa-paper-plane"></i> Gửi File
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Transfer Progress -->
+                    <div class="transfer-progress" id="transferProgress" style="display: none;">
+                        <h4>Tiến trình chuyển file:</h4>
+                        <div class="progress-list" id="progressList"></div>
+                    </div>
+
+                    <!-- Received Files -->
+                    <div class="received-files" id="receivedFiles" style="display: none;">
+                        <h4>Files đã nhận:</h4>
+                        <div class="received-list" id="receivedList"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QR Code Section -->
+            <section class="qr-section" id="qrSection" style="display: none;">
+                <div class="qr-content">
+                    <h3><i class="fas fa-qrcode"></i> Mã QR kết nối</h3>
+                    <p>Quét mã QR này từ thiết bị khác để kết nối</p>
+                    <div id="qrCode"></div>
+                    <div class="qr-info">
+                        <p><strong>Mã phòng:</strong> <span id="qrRoomCode"></span></p>
+                        <button class="copy-room-btn" onclick="copyRoomCode()">
+                            <i class="fas fa-copy"></i> Copy mã
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Giải pháp chia sẻ file P2P - Kết nối trực tiếp, không cần server</p>
+        </footer>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal" id="loadingModal" style="display: none;">
+        <div class="modal-content">
+            <div class="spinner"></div>
+            <p id="loadingText">Đang xử lý...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="p2p-script.js"></script>
+</body>
+</html>
