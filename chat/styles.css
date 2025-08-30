@@ -3,11 +3,19 @@ html, body { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, -ap
 body { background: #0b1020; color: #e5e7eb; }
 :root { color-scheme: dark; }
 
-.app { display: grid; grid-template-rows: auto 1fr auto auto; height: 100svh; max-width: 720px; margin: 0 auto; padding: 12px; gap: 12px; }
+.app { display: grid; grid-template-rows: auto auto 1fr auto auto; height: 100svh; max-width: 720px; margin: 0 auto; padding: 12px; gap: 12px; }
 header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 header h1 { margin: 0; font-size: 20px; }
 header .user { display: flex; align-items: center; gap: 8px; }
 header input { background: #0f172a; color: #e5e7eb; border: 1px solid #1f2a44; border-radius: 8px; padding: 8px 10px; outline: none; }
+
+.setup { background: #0f172a; border: 1px solid #1f2a44; border-radius: 12px; padding: 16px; }
+.setup h3 { margin: 0 0 12px 0; font-size: 16px; }
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; margin-bottom: 4px; font-size: 14px; color: #94a3b8; }
+.form-group input { width: 100%; background: #1e293b; color: #e5e7eb; border: 1px solid #334155; border-radius: 8px; padding: 8px 10px; outline: none; }
+.save-btn { background: #059669; color: white; border: none; border-radius: 8px; padding: 8px 16px; font-weight: 600; cursor: pointer; }
+.save-btn:hover { background: #047857; }
 
 main { overflow: hidden; }
 .messages { list-style: none; margin: 0; padding: 0; height: 100%; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
@@ -23,5 +31,5 @@ form button:hover { filter: brightness(1.05); }
 .actions { display: flex; gap: 8px; justify-content: center; }
 .actions button { background: #374151; color: #e5e7eb; border: 1px solid #4b5563; border-radius: 8px; padding: 8px 12px; font-size: 14px; cursor: pointer; }
 .actions button:hover { background: #4b5563; }
-.clear-btn:hover { background: #dc2626 !important; border-color: #dc2626; }
+.refresh-btn:hover { background: #0ea5e9 !important; border-color: #0ea5e9; }
 .export-btn:hover { background: #059669 !important; border-color: #059669; }

@@ -34,3 +34,5 @@ Website sẽ có địa chỉ: `https://username.github.io/repository-name`
 - Tin nhắn chỉ lưu trên máy local (localStorage)
 - Không có tính năng real-time
 - Mỗi người dùng chỉ thấy tin nhắn của mình
+
+
