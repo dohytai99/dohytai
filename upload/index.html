@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File - DohyTai.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .upload-frame {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: 70vh;
+            min-height: 500px;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-top: 20px;
+            padding: 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .upload-frame {
+                height: 60vh;
+                border-radius: 10px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>📁 Upload File to OneDrive</h1>
+            <p>Tải file lên OneDrive một cách nhanh chóng và an toàn</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="upload-frame">
+            <iframe 
+                src="https://onedrive-upload-nxv6hox0u-dohytai99s-projects.vercel.app/simple"
+                title="OneDrive Upload"
+                loading="lazy">
+            </iframe>
+        </div>
+        
+        <div class="footer">
+            <p>🔒 File sẽ được tải lên OneDrive an toàn</p>
+            <a href="/" class="back-link">← Về trang chủ</a>
+        </div>
+    </div>
+
+    <script>
+        // Tự động điều chỉnh chiều cao iframe nếu cần
+        window.addEventListener('message', function(event) {
+            if (event.origin === 'https://onedrive-upload-nxv6hox0u-dohytai99s-projects.vercel.app') {
+                const iframe = document.querySelector('iframe');
+                if (event.data.height) {
+                    iframe.style.height = event.data.height + 'px';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
