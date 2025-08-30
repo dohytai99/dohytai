@@ -48,6 +48,39 @@
     loadMessages();
   });
 
+  // Admin commands
+  const handleAdminCommand = (command) => {
+    if (myName.toLowerCase() === 'admin') {
+      switch (command) {
+        case '/delete':
+          if (confirm('Bạn có chắc muốn xóa TẤT CẢ tin nhắn? (Chỉ admin mới có thể làm điều này)')) {
+            messages.innerHTML = '';
+            if (config.token && config.repo) {
+              // Clear file on GitHub
+              updateFile([]);
+            }
+            alert('Đã xóa tất cả tin nhắn!');
+          }
+          return true;
+        case '/clear':
+          if (confirm('Xóa tin nhắn local?')) {
+            messages.innerHTML = '';
+            alert('Đã xóa tin nhắn local!');
+          }
+          return true;
+        case '/help':
+          alert('Admin Commands:\n/delete - Xóa tất cả tin nhắn\n/clear - Xóa tin nhắn local\n/help - Hiển thị lệnh');
+          return true;
+        default:
+          if (command.startsWith('/')) {
+            alert('Lệnh không hợp lệ. Gõ /help để xem danh sách lệnh.');
+            return true;
+          }
+      }
+    }
+    return false;
+  };
+
   // GitHub API functions
   const getFileContent = async () => {
     try {
@@ -212,6 +245,12 @@
     e.preventDefault();
     const text = input.value.trim();
     if (!text) return;
+    
+    // Check for admin commands first
+    if (handleAdminCommand(text)) {
+      input.value = '';
+      return;
+    }
     
     if (!config.token || !config.repo) {
       alert('Vui lòng thiết lập GitHub trước!');
