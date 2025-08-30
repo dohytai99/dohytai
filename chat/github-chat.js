@@ -12,40 +12,22 @@
   const exportBtn = document.getElementById('exportBtn');
 
   let myName = localStorage.getItem('chat:name') || '';
-  let config = JSON.parse(localStorage.getItem('chat:config') || '{}');
+  
+  // Cài đặt mặc định - ẩn setup
+  setup.style.display = 'none';
+  
+  // Tự động cài đặt config mặc định
+  let config = {
+    token: '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',
+    repo: 'dohytai99/dohytai',
+    branch: 'main'
+  };
   
   if (myName) usernameInput.value = myName;
-  if (config.token) tokenInput.value = config.token;
-  if (config.repo) repoInput.value = config.repo;
-  if (config.branch) branchInput.value = config.branch;
-  
-  // Hide setup if config exists
-  if (config.token && config.repo) {
-    setup.style.display = 'none';
-  }
 
   usernameInput.addEventListener('input', () => {
     myName = usernameInput.value.trim().slice(0, 24);
     localStorage.setItem('chat:name', myName);
-  });
-
-  saveConfigBtn.addEventListener('click', () => {
-    config = {
-      token: tokenInput.value.trim(),
-      repo: repoInput.value.trim(),
-      branch: branchInput.value.trim() || 'main'
-    };
-    
-    if (!config.token || !config.repo) {
-      alert('Vui lòng nhập đầy đủ Token và Repository!');
-      return;
-    }
-    
-    localStorage.setItem('chat:config', JSON.stringify(config));
-    setup.style.display = 'none';
-    
-    // Load messages after config
-    loadMessages();
   });
 
   // Admin commands
@@ -252,12 +234,6 @@
       return;
     }
     
-    if (!config.token || !config.repo) {
-      alert('Vui lòng thiết lập GitHub trước!');
-      setup.style.display = 'block';
-      return;
-    }
-    
     const payload = { 
       user: myName || 'Guest', 
       text, 
@@ -305,8 +281,6 @@
     }
   }, 30000);
 
-  // Load messages on page load if config exists
-  if (config.token && config.repo) {
-    loadMessages();
-  }
+  // Load messages on page load
+  loadMessages();
 })();
