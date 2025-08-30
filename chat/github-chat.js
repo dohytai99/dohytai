@@ -51,6 +51,8 @@
   // GitHub API functions
   const getFileContent = async () => {
     try {
+      console.log('Fetching messages from:', `https://api.github.com/repos/${config.repo}/contents/chat-messages.json?ref=${config.branch}`);
+      
       const response = await fetch(`https://api.github.com/repos/${config.repo}/contents/chat-messages.json?ref=${config.branch}`, {
         headers: {
           'Authorization': `token ${config.token}`,
@@ -58,15 +60,21 @@
         }
       });
       
+      console.log('Response status:', response.status);
+      
       if (response.status === 404) {
+        console.log('File does not exist yet');
         return null; // File doesn't exist yet
       }
       
       if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status}`);
+        const errorText = await response.text();
+        console.error('GitHub API error:', response.status, errorText);
+        throw new Error(`GitHub API error: ${response.status} - ${errorText}`);
       }
       
       const data = await response.json();
+      console.log('File content received:', data);
       return JSON.parse(atob(data.content));
     } catch (error) {
       console.error('Error fetching messages:', error);
@@ -76,6 +84,8 @@
 
   const updateFile = async (content) => {
     try {
+      console.log('Updating file with content:', content);
+      
       // Get current file SHA if exists
       let sha = null;
       try {
@@ -89,10 +99,24 @@
         if (currentFile.ok) {
           const fileData = await currentFile.json();
           sha = fileData.sha;
+          console.log('Current file SHA:', sha);
         }
       } catch (error) {
-        // File doesn't exist, that's fine
+        console.log('File does not exist, will create new');
       }
+
+      const requestBody = {
+        message: `Add message from ${myName || 'Guest'}`,
+        content: btoa(JSON.stringify(content, null, 2)),
+        branch: config.branch
+      };
+      
+      if (sha) {
+        requestBody.sha = sha;
+      }
+      
+      console.log('Request body:', requestBody);
+      console.log('Updating file at:', `https://api.github.com/repos/${config.repo}/contents/chat-messages.json`);
 
       const response = await fetch(`https://api.github.com/repos/${config.repo}/contents/chat-messages.json`, {
         method: 'PUT',
@@ -101,18 +125,19 @@
           'Accept': 'application/vnd.github.v3+json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          message: `Add message from ${myName || 'Guest'}`,
-          content: btoa(JSON.stringify(content, null, 2)),
-          branch: config.branch,
-          ...(sha && { sha })
-        })
+        body: JSON.stringify(requestBody)
       });
 
+      console.log('Update response status:', response.status);
+      
       if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status}`);
+        const errorText = await response.text();
+        console.error('GitHub API update error:', response.status, errorText);
+        throw new Error(`GitHub API error: ${response.status} - ${errorText}`);
       }
 
+      const result = await response.json();
+      console.log('File updated successfully:', result);
       return true;
     } catch (error) {
       console.error('Error updating file:', error);
@@ -174,9 +199,12 @@
       };
     });
     
+    console.log('Saving messages:', messageArray);
     const success = await updateFile(messageArray);
     if (!success) {
       alert('Không thể lưu tin nhắn. Vui lòng kiểm tra token và repository!');
+    } else {
+      console.log('Messages saved successfully!');
     }
   };
 
