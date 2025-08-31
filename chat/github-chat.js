@@ -13,7 +13,7 @@
   
 
   
-  // Encryption functions - Enhanced security
+ 
   const encryptToken = (token, key = 'github_chat_secret_2024') => {
     try {
       // Multi-layer encryption: XOR + character shifting + base64 + additional obfuscation
@@ -60,7 +60,7 @@
     }
   };
 
-  // Function to update token (for admin use)
+ 
   const updateEncryptedToken = (newToken) => {
     const encrypted = encryptToken(newToken);
     config.token = encrypted;
@@ -99,7 +99,7 @@
     if (myName.toLowerCase() === 'admin') {
       switch (command) {
         case '/delete':
-          if (confirm('Bạn có chắc muốn xóa TẤT CẢ tin nhắn? (Chỉ admin mới có thể làm điều này)')) {
+          if (confirm('Bạn có chắc muốn xóa TẤT CẢ tin nhắn? (Chỉ tuôi mới có thể làm điều này)')) {
             messages.innerHTML = '';
             if (config.token && config.repo) {
               // Clear file on GitHub
