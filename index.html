@@ -1,55 +1,516 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chat GitHub - Real-time</title>
-  <link rel="stylesheet" href="styles.css" />
-  <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" content="#0ea5e9" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4M76L9JEHQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4M76L9JEHQ');
+</script>
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Giới thiệu cá nhân</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <!-- Thêm Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            background: url('images/anh2.jpg') no-repeat center center/cover;           
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(0,0,0,0.1), 
+                rgba(0,0,0,0.05)
+            );
+            animation: gradientShift 10s ease infinite;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        @keyframes gradientShift {
+            0% { 
+                background: linear-gradient(45deg, 
+                    rgba(0,0,0,0.1), 
+                    rgba(0,0,0,0.05)
+                );
+            }
+            50% { 
+                background: linear-gradient(45deg, 
+                    rgba(0,0,0,0.05), 
+                    rgba(0,0,0,0.1)
+                );
+            }
+            100% { 
+                background: linear-gradient(45deg, 
+                    rgba(0,0,0,0.1), 
+                    rgba(0,0,0,0.05)
+                );
+            }
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-out 0.5s forwards;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+            .container {
+                background: rgba(255, 255, 255, 0.1);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+            .container {
+                background: rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: scaleIn 0.8s ease-out 1s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-img::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            color: #fff;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 26px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1.2s forwards;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            line-height: 1.4;
+        }
+
+        h1 br {
+            display: block;
+            content: "";
+            margin-top: 5px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            transform: translateX(-50%);
+            animation: lineGrow 1s ease-out 2s forwards;
+        }
+
+        @keyframes lineGrow {
+            to { width: 80%; }
+        }
+
+        p {
+            color: #f1f1f1;
+            font-weight: 300;
+            font-size: 16px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1.4s forwards;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 25px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1.6s forwards;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .swiper-pagination {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 0;
+            pointer-events: none;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0 5px;
+            pointer-events: auto;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: white;
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 85%;
+                margin: 20px;
+                padding: 25px;
+            }
+            
+            .profile-img {
+                width: 110px;
+                height: 110px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 15px;
+                margin: 15px 0;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px 20px;
+                margin-top: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="app">
-    <header>
-      <h1>Chat GitHub</h1>
-      <div class="user">
-        <label for="username">Tên:</label>
-        <input id="username" type="text" placeholder="Nhập tên..." maxlength="24" />
-      </div>
-    </header>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="container">
+                    <img src="images/vest.jpg" alt="Ảnh đại diện" class="profile-img">
+                    <h1>Xin chào, tôi là<br>Donald Tài</h1>
+                    <p>Tôi là một <b>Digital Entrepreneur</b>, đam mê <b>Kinh doanh điện tử</b>.  
+                    Trang web này giúp tôi kết nối với bạn.</p>
+                    <a href="mailto:dohytai99@gmail.com" class="btn">Liên hệ ngay</a>
+                    <a href="http://zalo.me/84907381975" class="btn" target="_blank">Kết nối Zalo</a>
+                </div>
+            </div>
 
-    <div class="setup" id="setup">
-      <h3>Thiết lập GitHub</h3>
-      <div class="form-group">
-        <label for="token">GitHub Token:</label>
-        <input id="token" type="password" value="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" />
-      </div>
-      <div class="form-group">
-        <label for="repo">Repository:</label>
-        <input id="repo" type="text" value="dohytai99/dohytai" />
-      </div>
-      <div class="form-group">
-        <label for="branch">Branch:</label>
-        <input id="branch" type="text" value="main" />
-      </div>
-      <button id="saveConfig" class="save-btn">Lưu cấu hình</button>
+            <div class="swiper-slide">
+                <div class="container">
+                    <h1>Kinh nghiệm</h1>
+                    <p>Với nhiều năm kinh nghiệm trong lĩnh vực Digital Marketing và E-commerce, tôi đã giúp nhiều doanh nghiệp phát triển và mở rộng thị trường trực tuyến.</p>
+                    <div class="btn">Xem thêm</div>
+                </div>
+            </div>
+
+            <div class="swiper-slide">
+                <div class="container">
+                    <h1>Dự án</h1>
+                    <p>Đã thực hiện nhiều dự án thành công trong việc xây dựng và phát triển các chiến lược kinh doanh số cho các doanh nghiệp vừa và nhỏ.</p>
+                    <div class="btn">Khám phá</div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
     </div>
 
-    <main>
-      <ul id="messages" class="messages"></ul>
-    </main>
+    <!-- Thêm Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Cấu hình cơ bản
+            direction: 'horizontal',
+            loop: false,
+            speed: 500,
+            
+            // Cấu hình pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                type: 'bullets',
+                bulletElement: 'span',
+                bulletClass: 'swiper-pagination-bullet',
+                bulletActiveClass: 'swiper-pagination-bullet-active',
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '"></span>';
+                },
+            },
+            
+            // Cấu hình cho iOS
+            touchRatio: 1,
+            touchAngle: 45,
+            resistance: true,
+            resistanceRatio: 0.85,
+            
+            // Cấu hình cho iOS Safari
+            watchSlidesProgress: true,
+            preventInteractionOnTransition: true,
+            
+            // Cấu hình cho vuốt
+            touchStartPreventDefault: false,
+            touchMoveStopPropagation: false,
+            
+            // Cấu hình cho hiệu ứng
+            effect: 'slide',
+            grabCursor: true,
 
-    <form id="form" autocomplete="off">
-      <input id="input" placeholder="Nhập tin nhắn..." />
-      <button type="submit">Gửi</button>
-    </form>
-    
-    <div class="actions">
-      <button id="refreshBtn" class="refresh-btn">Làm mới</button>
-      <button id="exportBtn" class="export-btn">Xuất tin nhắn</button>
-    </div>
-  </div>
-  
-  <script src="github-chat.js"></script>
+            // Cấu hình cho MacBook
+            mousewheel: {
+                forceToAxis: true,
+                sensitivity: 1,
+                releaseOnEdges: true
+            },
+            
+            // Cấu hình cho trackpad
+            touchEventsTarget: 'container',
+            touchRatio: 1,
+            touchAngle: 45,
+            touchMoveStopPropagation: false,
+            touchStartPreventDefault: false,
+            touchStartForcePreventDefault: false,
+            touchMoveForcePreventDefault: false,
+            
+            // Cấu hình cho vuốt 2 ngón tay
+            allowTouchMove: true,
+            threshold: 5,
+            touchStartThreshold: 5,
+            touchMoveStopPropagation: false,
+            touchStartPreventDefault: false,
+            touchStartForcePreventDefault: false,
+            touchMoveForcePreventDefault: false,
+            
+            // Cấu hình cho chuyển trang mượt mà
+            followFinger: true,
+            shortSwipes: true,
+            longSwipes: true,
+            longSwipesRatio: 0.5,
+            longSwipesMs: 300,
+            shortSwipesMs: 300,
+            
+            // Cấu hình cho hiệu ứng chuyển trang
+            effect: 'slide',
+            fadeEffect: {
+                crossFade: true
+            },
+            
+            // Cấu hình cho animation
+            speed: 500,
+            cssMode: false,
+            updateOnWindowResize: true,
+            observer: true,
+            observeParents: true,
+            
+            // Cấu hình cho keyboard
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true,
+                pageUpDown: true
+            },
+            
+            // Cấu hình cho a11y
+            a11y: {
+                prevSlideMessage: 'Previous slide',
+                nextSlideMessage: 'Next slide',
+                firstSlideMessage: 'This is the first slide',
+                lastSlideMessage: 'This is the last slide'
+            }
+        });
+
+        // Thêm sự kiện cho trackpad
+        document.addEventListener('wheel', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                if (e.deltaY > 0) {
+                    swiper.slideNext();
+                } else {
+                    swiper.slidePrev();
+                }
+            }
+        }, { passive: false });
+    </script>
 </body>
 </html>
