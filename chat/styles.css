@@ -9,6 +9,7 @@ header h1 { margin: 0; font-size: 20px; }
 header .user { display: flex; align-items: center; gap: 8px; }
 header input { background: #0f172a; color: #e5e7eb; border: 1px solid #1f2a44; border-radius: 8px; padding: 8px 10px; outline: none; }
 
+
 .setup { background: #0f172a; border: 1px solid #1f2a44; border-radius: 12px; padding: 16px; }
 .setup h3 { margin: 0 0 12px 0; font-size: 16px; }
 .form-group { margin-bottom: 12px; }
