@@ -367,7 +367,7 @@
   },
   {
     "appName": "Iphone Donald Tai ",
-    "usageTime": "Di lam vÃÂª mÃÂªt",
+    "usageTime": "Di lam vÃÂÃÂª mÃÂÃÂªt",
     "category": "Theo doi screentime IP",
     "timestamp": "2025-07-26T16:00:32.236Z"
   },
@@ -517,7 +517,7 @@
   },
   {
     "appName": "Iphone Donald Tai ",
-    "usageTime": "KhÃ¡nh em hoc h",
+    "usageTime": "KhÃÂ¡nh em hoc h",
     "category": "Theo doi screentime IP",
     "timestamp": "2025-08-25T16:00:30.915Z"
   },
@@ -565,7 +565,7 @@
   },
   {
     "appName": "Iphone Donald Tai ",
-    "usageTime": "Dimê+Lhá hêt mi",
+    "usageTime": "DimÃª+LhÃ¡ hÃªt mi",
     "category": "Theo doi screentime IP",
     "timestamp": "2025-09-01T10:10:55.955Z"
   },
@@ -583,8 +583,14 @@
   },
   {
     "appName": "Iphone Donald Tai ",
-    "usageTime": "Cho c�c k d� vu�t o:",
+    "usageTime": "Cho các k d¿ vuÉt o:",
     "category": "Theo doi screentime IP",
     "timestamp": "2025-09-02T16:57:07.294Z"
+  },
+  {
+    "appName": "Iphone Donald Tai ",
+    "usageTime": "3h 35m",
+    "category": "Theo doi screentime IP",
+    "timestamp": "2025-09-05T16:00:25.588Z"
   }
 ]
