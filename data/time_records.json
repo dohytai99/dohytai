@@ -3670,5 +3670,11 @@
     "time": "07:27:22",
     "timestamp": "2025-09-17T07:27:22.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-09-17",
+    "time": "07:29:10",
+    "timestamp": "2025-09-17T07:29:10.000Z",
+    "type": "arrive_home"
   }
 ]
