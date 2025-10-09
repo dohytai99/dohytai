@@ -1,32 +1,8 @@
 [
   {
-    "id": "9b05a55e-2975-46c6-af5b-259e383a3461",
-    "user": "hy",
-    "text": "https://toffeeshare.com/",
-    "ts": 1756872444789
-  },
-  {
-    "id": "873bcb40-44b8-44c4-976a-900f3ec15b97",
-    "user": "binh",
-    "text": "https://www.youtube.com/watch?v=b1SRjGmgA54&list=RDGMEMCMFH2exzjBeE_zAHHJOdxg&index=4",
-    "ts": 1758018613963
-  },
-  {
-    "id": "1912a6f5-e348-449e-b9a8-5b38ed19d9a3",
-    "user": "Tai",
+    "id": "84597a8b-7ad2-4a40-97b5-0c2a1dc2feec",
+    "user": "Hy",
     "text": "https://www.canva.com/design/DAG0_X1ubro/lzZfNP9c_-RA7RQqjaS3Gw/edit",
-    "ts": 1759985393158
-  },
-  {
-    "id": "9f773fee-c107-4a55-a416-9eaf956d6009",
-    "user": "Guest",
-    "text": "/admin",
-    "ts": 1759985745717
-  },
-  {
-    "id": "0dbcad9c-d568-4c7f-a343-8b78bd3df56c",
-    "user": "Guest",
-    "text": "/delete",
-    "ts": 1759985820694
+    "ts": 1759985849854
   }
 ]
