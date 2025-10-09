@@ -22,5 +22,11 @@
     "user": "Guest",
     "text": "/admin",
     "ts": 1759985745717
+  },
+  {
+    "id": "0dbcad9c-d568-4c7f-a343-8b78bd3df56c",
+    "user": "Guest",
+    "text": "/delete",
+    "ts": 1759985820694
   }
 ]
