@@ -4444,5 +4444,11 @@
     "time": "23:00:18",
     "timestamp": "2025-10-12T23:00:18.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2025-10-12",
+    "time": "23:00:20",
+    "timestamp": "2025-10-12T23:00:20.000Z",
+    "type": "arrive_work"
   }
 ]
