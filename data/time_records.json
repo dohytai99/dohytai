@@ -5386,5 +5386,11 @@
     "time": "10:45:51",
     "timestamp": "2025-10-29T10:45:51.000Z",
     "type": "arrive_work"
+  },
+  {
+    "date": "2025-10-29",
+    "time": "10:57:27",
+    "timestamp": "2025-10-29T10:57:27.000Z",
+    "type": "arrive_work"
   }
 ]
