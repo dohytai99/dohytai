@@ -8410,5 +8410,11 @@
     "time": "20:27:51",
     "timestamp": "2026-01-07T20:27:51.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2026-01-08",
+    "time": "08:52:10",
+    "timestamp": "2026-01-08T08:52:10.000Z",
+    "type": "arrive_home"
   }
 ]
