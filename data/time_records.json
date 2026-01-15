@@ -8644,5 +8644,11 @@
     "time": "20:10:23",
     "timestamp": "2026-01-14T20:10:23.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2026-01-15",
+    "time": "07:29:42",
+    "timestamp": "2026-01-15T07:29:42.000Z",
+    "type": "arrive_home"
   }
 ]
