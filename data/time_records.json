@@ -8776,5 +8776,11 @@
     "time": "22:22:05",
     "timestamp": "2026-01-16T22:22:05.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2026-01-16",
+    "time": "22:22:10",
+    "timestamp": "2026-01-16T22:22:10.000Z",
+    "type": "arrive_home"
   }
 ]
