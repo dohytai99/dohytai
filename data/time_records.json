@@ -9262,5 +9262,11 @@
     "time": "13:32:35",
     "timestamp": "2026-01-18T13:32:35.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2026-01-18",
+    "time": "13:32:56",
+    "timestamp": "2026-01-18T13:32:56.000Z",
+    "type": "arrive_work"
   }
 ]
