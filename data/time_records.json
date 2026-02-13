@@ -9982,5 +9982,11 @@
     "time": "10:20:38",
     "timestamp": "2026-02-13T10:20:38.000Z",
     "type": "arrive_home"
+  },
+  {
+    "date": "2026-02-13",
+    "time": "13:14:45",
+    "timestamp": "2026-02-13T13:14:45.000Z",
+    "type": "arrive_home"
   }
 ]
