@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do Hy Tai - Online Resume</title>
+    <meta name="description" content="Professional Online Resume of Do Hy Tai, Visa Consultant and Immigration Specialist based in Ho Chi Minh City. Specialized in legal compliance, document auditing, and multilingual cases.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern Design Tokens */
+        :root {
+            --font-sans: 'Inter', sans-serif;
+            --font-display: 'Plus Jakarta Sans', sans-serif;
+            
+            /* Dark Theme Colors (Default) */
+            --bg-base: #0b0f19;
+            --bg-surface: #131b2e;
+            --bg-surface-hover: #1e294b;
+            --bg-card: rgba(19, 27, 46, 0.7);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --border-color-hover: rgba(56, 189, 248, 0.3);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --accent-primary: #38bdf8; /* Sky Blue */
+            --accent-primary-hover: #0ea5e9;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --accent-secondary: #818cf8; /* Indigo */
+            
+            --gradient-header: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        html.light {
+            /* Light Theme Colors */
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-surface-hover: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.8);
+            --border-color: rgba(0, 0, 0, 0.06);
+            --border-color-hover: rgba(2, 132, 199, 0.3);
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            
+            --accent-primary: #0284c7; /* Sky Blue Darker */
+            --accent-primary-hover: #0369a1;
+            --accent-glow: rgba(2, 132, 199, 0.1);
+            --accent-secondary: #4f46e5;
+            
+            --gradient-header: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.08);
+        }
+
+        /* Basic Reset & Base Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            font-family: var(--font-sans);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* Background grid/dots decoration */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Top Action Bar */
+        .top-bar {
+            max-width: 1000px;
+            margin: 20px auto 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-action {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-action:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-1px);
+        }
+
+        .btn-action svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .resume-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg), var(--shadow-glow);
+        }
+
+        /* Header block */
+        header {
+            background: var(--gradient-header);
+            color: #ffffff;
+            padding: 50px;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .profile-title h1 {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-title .subtitle {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        /* Contact Details Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            cursor: pointer;
+            position: relative;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+        }
+
+        .contact-item svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-primary);
+            stroke-width: 2;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        .contact-item strong {
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-right: 4px;
+        }
+
+        /* Tooltip style */
+        .tooltip {
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #0f172a;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #0f172a transparent transparent transparent;
+        }
+
+        .contact-item:hover .tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .contact-item .tooltip.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            background: #10b981; /* Green success */
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+        .contact-item .tooltip.visible::after {
+            border-color: #10b981 transparent transparent transparent;
+        }
+
+        /* CV Main Content Grid */
+        .main-content {
+            padding: 45px;
+            display: grid;
+            grid-template-columns: 1.1fr 1.9fr;
+            gap: 40px;
+        }
+
+        /* Left/Right Columns */
+        .col-left {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        /* Layout section styling */
+        section {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-primary) 0%, transparent 100%);
+            opacity: 0.4;
+        }
+
+        h2 svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent-primary);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Section Specific Styles */
+        .objective-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-align: justify;
+            background: var(--bg-surface);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+        .objective-text::before {
+            content: '“';
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 3rem;
+            color: var(--border-color);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        /* Experience and Timeline items */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+            margin-left: 8px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -27px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 2px solid var(--accent-primary);
+            box-shadow: 0 0 8px var(--accent-primary);
+            transition: all 0.2s ease;
+        }
+
+        .timeline-item:hover .timeline-marker {
+            background: var(--accent-primary);
+            transform: scale(1.2);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .item-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+        }
+
+        .item-date {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            background: rgba(56, 189, 248, 0.08);
+            padding: 2px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+        }
+
+        .item-sub {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Lists under Experience */
+        ul {
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            text-align: justify;
+            color: var(--text-secondary);
+        }
+
+        li::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            opacity: 0.7;
+        }
+
+        li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Education style block */
+        .education-block {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s ease;
+        }
+        .education-block:hover {
+            border-color: var(--border-color-hover);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Skills Styling */
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-card:hover {
+            border-color: var(--border-color-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-label {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .skill-label span.badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-secondary);
+            background: rgba(129, 140, 248, 0.08);
+            border: 1px solid rgba(129, 140, 248, 0.15);
+            padding: 1px 8px;
+            border-radius: 9999px;
+        }
+
+        .skill-value {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        /* Languages section */
+        .languages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lang-bar-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .lang-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .lang-bar {
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .lang-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: 9999px;
+            width: 0;
+            transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1000px;
+            margin: 40px auto 0 auto;
+            text-align: center;
+            padding: 24px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            font-family: var(--font-display);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 800px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px;
+            }
+            header {
+                padding: 35px 30px;
+            }
+            .profile-title h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 30px 20px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-bar {
+                justify-content: center;
+                padding: 0 10px;
+            }
+            .profile-title h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Print styles optimized to fit exactly 1 A4 page beautifully */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                font-size: 10pt;
+                line-height: 1.4;
+                padding: 0;
+            }
+            
+            .bg-pattern, .top-bar, footer, .tooltip {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .resume-card {
+                border: none !important;
+                box-shadow: none !important;
+                background: transparent !important;
+            }
+
+            header {
+                background: transparent !important;
+                color: #0f172a !important;
+                padding: 0 0 20px 0 !important;
+                border-bottom: 2px solid #0f172a !important;
+            }
+
+            .profile-title h1 {
+                background: none !important;
+                -webkit-text-fill-color: initial !important;
+                color: #0f172a !important;
+                font-size: 24pt !important;
+            }
+
+            .profile-title .subtitle {
+                color: #0284c7 !important;
+                margin-bottom: 15px !important;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                border-top: 1px solid #e2e8f0 !important;
+                padding-top: 12px !important;
+                gap: 8px !important;
+            }
+
+            .contact-item {
+                background: transparent !important;
+                border: none !important;
+                color: #475569 !important;
+                padding: 0 !important;
+            }
+
+            .contact-item svg {
+                stroke: #0284c7 !important;
+            }
+
+            .main-content {
+                grid-template-columns: 1.15fr 1.85fr !important;
+                gap: 25px !important;
+                padding: 20px 0 0 0 !important;
+            }
+
+            h2 {
+                color: #0f172a !important;
+                font-size: 12pt !important;
+                margin-bottom: 12px !important;
+                border-bottom: 1px solid #cbd5e1 !important;
+                padding-bottom: 4px !important;
+            }
+
+            h2::after {
+                display: none !important;
+            }
+
+            h2 svg {
+                stroke: #0284c7 !important;
+            }
+
+            .objective-text {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                font-size: 9.5pt !important;
+            }
+
+            .objective-text::before {
+                display: none !important;
+            }
+
+            .skill-card, .lang-bar-container, .education-block {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                margin-bottom: 12px !important;
+            }
+
+            .skill-card:hover, .education-block:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .skill-label {
+                margin-bottom: 2px !important;
+            }
+
+            .skill-label span.badge {
+                border: 1px solid #cbd5e1 !important;
+                color: #475569 !important;
+                background: transparent !important;
+            }
+
+            .skill-value {
+                font-size: 9pt !important;
+            }
+
+            .lang-bar {
+                border: 1px solid #cbd5e1 !important;
+                height: 4px !important;
+            }
+
+            .lang-progress {
+                background: #0284c7 !important;
+                width: var(--print-width) !important;
+            }
+
+            .timeline {
+                border-left: 1px solid #cbd5e1 !important;
+            }
+
+            .timeline-marker {
+                border-color: #0284c7 !important;
+                background: #ffffff !important;
+                box-shadow: none !important;
+            }
+
+            .item-date {
+                background: transparent !important;
+                border: none !important;
+                color: #0284c7 !important;
+                padding: 0 !important;
+            }
+
+            li {
+                font-size: 9pt !important;
+                margin-bottom: 6px !important;
+            }
+
+            li::before {
+                background-color: #0284c7 !important;
+            }
+            
+            /* Prevent orphan headings or splits */
+            section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Grid Dots Background Pattern -->
+    <div class="bg-pattern"></div>
+
+    <!-- Top Action Bar -->
+    <div class="top-bar">
+        <button id="theme-toggle" class="btn-action" aria-label="Toggle Theme">
+            <svg id="theme-icon-light" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+            <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            <span id="theme-text">Dark Mode</span>
+        </button>
+        <button onclick="window.print()" class="btn-action" aria-label="Print or Download PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2m-10 0v5h8v-5M6 14h.01"/></svg>
+            <span>Print CV</span>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="resume-card">
+            
+            <!-- HEADER SECTION -->
+            <header>
+                <div class="header-content">
+                    <div class="header-main">
+                        <div class="profile-title">
+                            <h1>DO HY TAI</h1>
+                            <div class="subtitle">Visa Consultant / Specialist</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-item" onclick="copyText('0907381975', this)" title="Click to copy phone number">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                            <span><strong>Phone:</strong> 0907 381 975</span>
+                            <span class="tooltip">Click to copy</span>
+                        </div>
+                        
+                        <div class="contact-item" onclick="copyText('donaldtai99@gmail.com', this)" title="Click to copy email address">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                            <span><strong>Email:</strong> donaldtai99@gmail.com</span>
+                            <span class="tooltip">Click to copy</span>
+                        </div>
+                        
+                        <div class="contact-item" onclick="copyText('District 10, Ho Chi Minh City', this)" title="Click to copy location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span><strong>Location:</strong> Dist 10, HCMC</span>
+                            <span class="tooltip">Click to copy</span>
+                        </div>
+                        
+                        <div class="contact-item" onclick="copyText('Vietnamese, English, Chinese', this)" title="Click to copy languages info">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                            <span><strong>Languages:</strong> VN | EN | CN</span>
+                            <span class="tooltip">Click to copy</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CORE COLUMNS -->
+            <main class="main-content">
+                
+                <!-- LEFT COLUMN -->
+                <div class="col-left">
+                    
+                    <!-- OBJECTIVE -->
+                    <section>
+                        <h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            Objective
+                        </h2>
+                        <div class="objective-text">
+                            To leverage a strong command of English, a deep understanding of local culture and immigration laws, and multilingual capabilities (English, Chinese) to excel as a <strong>Visa Consultant</strong>. Committed to guiding clients through precise legal documentation, resolving complex cases, and maximizing visa approval rates, with the long-term goal of advancing into a professional Immigration & Settlement Specialist.
+                        </div>
+                    </section>
+
+                    <!-- CORE SKILLS -->
+                    <section>
+                        <h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            Core Skills
+                        </h2>
+                        <div class="skills-list">
+                            <div class="skill-card">
+                                <div class="skill-label">
+                                    <span>Visa Operations</span>
+                                    <span class="badge">Expertise</span>
+                                </div>
+                                <div class="skill-value">
+                                    Deeply knowledgeable in local cultural contexts and immigration laws. Strong expertise in systematizing paperwork, auditing legal compliance, and organizing tight, logically bulletproof application files.
+                                </div>
+                            </div>
+                            
+                            <div class="skill-card">
+                                <div class="skill-label">
+                                    <span>IT & Technology</span>
+                                    <span class="badge">Advanced</span>
+                                </div>
+                                <div class="skill-value">
+                                    Highly proficient in Office suites (Word, Excel) and Information Technology. Advanced skills in digital verification, online background research, and database management.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- LANGUAGES -->
+                    <section>
+                        <h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                            Languages
+                        </h2>
+                        <div class="languages-container">
+                            <div class="lang-bar-container">
+                                <div class="lang-header">
+                                    <span>Vietnamese</span>
+                                    <span>Native</span>
+                                </div>
+                                <div class="lang-bar">
+                                    <div class="lang-progress" style="width: 100%; --print-width: 100%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="lang-bar-container">
+                                <div class="lang-header">
+                                    <span>English</span>
+                                    <span>Professional</span>
+                                </div>
+                                <div class="lang-bar">
+                                    <div class="lang-progress" style="width: 85%; --print-width: 85%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="lang-bar-container">
+                                <div class="lang-header">
+                                    <span>Local Chinese</span>
+                                    <span>Communicative</span>
+                                </div>
+                                <div class="lang-bar">
+                                    <div class="lang-progress" style="width: 70%; --print-width: 70%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="col-right">
+                    
+                    <!-- WORK EXPERIENCE -->
+                    <section>
+                        <h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                            Work Experience
+                        </h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="item-header">
+                                    <h3 class="item-title">Independent Visa Processing Specialist</h3>
+                                    <span class="item-date">Feb 2026</span>
+                                </div>
+                                <div class="item-sub">Self-Prepared Hong Kong Tourist Visa Project for Family</div>
+                                <ul>
+                                    <li>Conducted in-depth research and constantly monitored administrative regulations and immigration law updates from the <strong>Hong Kong Immigration Department (HKID)</strong>.</li>
+                                    <li>Leveraged proficiency in local Chinese language and cultural familiarity to accurately translate, interpret, and standardize official legal documents from Vietnamese to English/Chinese.</li>
+                                    <li>Classified, verified, and synchronized a comprehensive portfolio of personal identification, financial proofs, and employment records for a group of 4 members under strict diplomatic compliance.</li>
+                                    <li>Structured a meticulous, logical travel itinerary seamlessly cross-referenced with flight and accommodation bookings to reinforce the credibility of the application.</li>
+                                    <li><strong>Result:</strong> Secured tourist visas successfully for all family members on schedule; acquired practical mastery over the document evaluation logic used by diplomatic missions.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- EDUCATION -->
+                    <section>
+                        <h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/></svg>
+                            Education
+                        </h2>
+                        <div class="education-block">
+                            <div class="item-header">
+                                <h3 class="item-title" style="color: var(--text-primary);">University of Economics Ho Chi Minh City (UEH)</h3>
+                                <span class="item-date">12/2023 - Present</span>
+                            </div>
+                            <div class="item-sub" style="margin-bottom: 8px;">Undergraduate Student - Economics & Management</div>
+                            <p style="font-size: 0.92rem; text-align: justify; color: var(--text-secondary);">
+                                Cultivated strong analytical thinking, systematic risk assessment, and service quality management. Developed robust capabilities for independent legal/documentary research and critical problem-solving.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 Do Hy Tai - All Rights Reserved. Built with Premium Web Tech.
+    </footer>
+
+    <script>
+        // Copy to clipboard function with custom UI tooltip feedback
+        function copyText(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                const tooltip = element.querySelector('.tooltip');
+                const originalText = tooltip.innerText;
+                
+                tooltip.innerText = 'Copied!';
+                tooltip.classList.add('visible');
+                
+                setTimeout(() => {
+                    tooltip.classList.remove('visible');
+                    setTimeout(() => {
+                        tooltip.innerText = originalText;
+                    }, 200);
+                }, 1500);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Dark/Light Theme Switcher Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIconLight = document.getElementById('theme-icon-light');
+        const themeIconDark = document.getElementById('theme-icon-dark');
+        const themeText = document.getElementById('theme-text');
+        const html = document.documentElement;
+
+        // Set initial theme based on local storage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+            setLightTheme();
+        } else {
+            setDarkTheme();
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('light')) {
+                setDarkTheme();
+            } else {
+                setLightTheme();
+            }
+        });
+
+        function setDarkTheme() {
+            html.classList.add('dark');
+            html.classList.remove('light');
+            themeIconLight.style.display = 'none';
+            themeIconDark.style.display = 'inline';
+            themeText.innerText = 'Dark Mode';
+            localStorage.setItem('theme', 'dark');
+        }
+
+        function setLightTheme() {
+            html.classList.add('light');
+            html.classList.remove('dark');
+            themeIconLight.style.display = 'inline';
+            themeIconDark.style.display = 'none';
+            themeText.innerText = 'Light Mode';
+            localStorage.setItem('theme', 'light');
+        }
+
+        // Skill list animated load
+        window.addEventListener('load', () => {
+            const progressions = document.querySelectorAll('.lang-progress');
+            progressions.forEach(prog => {
+                const targetWidth = prog.style.width;
+                prog.style.width = '0';
+                setTimeout(() => {
+                    prog.style.width = targetWidth;
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
